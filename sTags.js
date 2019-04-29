@@ -101,6 +101,7 @@
 
 
                     var E = $("<" + o.tagName + "/>", attr);
+		    console.error(o.tagHtml);
                     if (o.tagHtml) {
                         E.html(o.tagHtml.replace('{name}', o.data[i].name).replace('{id}', o.data[i].id))
                     } else {
