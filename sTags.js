@@ -290,5 +290,5 @@
         tagHtml: "",//自定义标签列表中的html内容。{name} 替换为 tag.name {id}将转换为 tag.id,
         tagAttr: {}//标签属性
     };
-})(jQuery);
+})(jQuery); 
 
