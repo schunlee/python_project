@@ -12,7 +12,7 @@
         var id = Date.now() + "" + Math.ceil(Math.random() * 1000);
         var this_ = $(this);
 
-        if (o.dataAttr.length == 3) {//设定数据属性
+        if (o.dataAttr.length === 3) {//设定数据属性
             for (var i in o.data) {
                 if (!o.data[i].id) {
                     o.data[i].id = o.data[i][o.dataAttr[0]]
@@ -26,7 +26,7 @@
             }
         }
 
-        if (o.tagName == "") {
+        if (o.tagName === "") {
             o.tagName = "div"
         }
 
@@ -53,61 +53,61 @@
             //     }).appendTo(target)
             // }
 
-            var color = 0 //颜色内容
-            var color_i = 0 //颜色计数
-            var color_s = ""  //按筛选内容的首字母换色，保存首字母内容
+            var color = 0; //颜色内容
+            var color_i = 0;//颜色计数
+            var color_s = "";  //按筛选内容的首字母换色，保存首字母内容
 
             if (o.data.length > 0) {//如果有标签数据
 
                 for (var i in o.data) {//循环标签数据
 
-                    var attr = {}
+                    var attr = {};
                     for (var j in o.tagAttr) {
                         attr[j] = o.tagAttr[j].replace('{name}', o.data[i].name).replace('{id}', o.data[i].id)
                     }
 
-                    attr.tagid = o.data[i].id //定义标签id
+                    attr.tagid = o.data[i].id; //定义标签id
 
                     if (o.screen) { //如果启用筛选 则添加标签属性
                         attr.screen = o.data[i].screen
                     }
 
-                    if (o.color == 1 && o.data[i].screen) { //按照筛选首字母换色
-                        if (color_s == "") {
-                            color_s = o.data[i].screen.substr(0, 1)
+                    if (o.color === 1 && o.data[i].screen) { //按照筛选首字母换色
+                        if (color_s === "") {
+                            color_s = o.data[i].screen.substr(0, 1);
                             color = o.colorData[color_i]
                         } else {
-                            if (color_s != o.data[i].screen.substr(0, 1)) {
+                            if (color_s !== o.data[i].screen.substr(0, 1)) {
                                 color_i++
-                                if (color_i == o.colorData.length) {
+                                if (color_i === o.colorData.length) {
                                     color_i = 0
                                 }
-                                color_s = o.data[i].screen.substr(0, 1)
+                                color_s = o.data[i].screen.substr(0, 1);
                                 color = o.colorData[color_i]
                             }
                         }
                         attr.style = "background:" + color[0] + ";color:" + color[1] + ";"
                     }
 
-                    if (o.color == 2) {//随机换色
-                        color = o.colorData[Math.floor(Math.random() * o.colorData.length)]
+                    if (o.color === 2) {//随机换色
+                        color = o.colorData[Math.floor(Math.random() * o.colorData.length)];
                         attr.style = "background:" + color[0] + ";color:" + color[1] + ";"
                     }
 
 
-                    if (this_.prop("tagName") == "DIV" && (typeof (o.data[i].fn) != "function" && typeof (o.click) != "function") && o.tagName != "a") {//鼠标形态
+                    if (this_.prop("tagName") === "DIV" && (typeof (o.data[i].fn) != "function" && typeof (o.click) != "function") && o.tagName !== "a") {//鼠标形态
                         attr.style += "cursor:default;"
                     }
 
 
-                    var E = $("<" + o.tagName + "/>", attr)
+                    var E = $("<" + o.tagName + "/>", attr);
                     if (o.tagHtml) {
                         E.html(o.tagHtml.replace('{name}', o.data[i].name).replace('{id}', o.data[i].id))
                     } else {
                         E.html('<span>' + o.data[i].name + '</span>')
                     }
 
-                    E.data("fn", o.data[i].fn)
+                    E.data("fn", o.data[i].fn);
 
                     E.click(function () {
                         // if (this_.prop("tagName") == "DIV") {
@@ -118,11 +118,11 @@
                         //         o.click($(this))
                         //     }
                         // }
-                        if (this_.prop("tagName") == "INPUT") {
+                        if (this_.prop("tagName") === "INPUT") {
                             addtag($(this));
                             $(this).remove()
                         }
-                    })
+                    });
 
                     E.appendTo(target)
                 }
@@ -162,10 +162,10 @@
         }
 
 
-        if ($(this).prop("tagName") == "DIV") {//如果作用于div标签。
+        if ($(this).prop("tagName") === "DIV") {//如果作用于div标签。
             $(this)
                 .attr("tag-list-id", id)
-                .addClass(o.tagListCSS)
+                .addClass(o.tagListCSS);
             var newarr = [];
             if (Array.isArray(o.defaultData)) {
                 if (o.data.length > 0) {
@@ -180,16 +180,16 @@
             list("[tag-list-id=" + id + "]")
         }
 
-        if ($(this).prop("tagName") == "INPUT") { //如果作用域输入框
+        if ($(this).prop("tagName") === "INPUT") { //如果作用域输入框
 
             $(this).hide();
-            $(this).after(tagList)
-            $(this).after(inputDiv)
+            $(this).after(tagList);
+            $(this).after(inputDiv);
 
 
             var addtag = function (e) { //向标签输入框中添加标签
                 var val = this_.val();//获取当前值
-                if (val == "") { //将当前值处理为数组
+                if (val === "") { //将当前值处理为数组
                     val = [];
                 } else {
                     val = val.split(",")
@@ -202,15 +202,15 @@
                     return false
                 }
 
-                val.push(e.attr("tagid")) //将点击值添加到当前值中
+                val.push(e.attr("tagid")); //将点击值添加到当前值中
 
-                this_.val(val.join(","))//修改当前值
+                this_.val(val.join(","));//修改当前值
 
                 var cls = $("<a>x</a>").click(function () {
                     deltag($(this))
                 })//删除标签
 
-                var temp = e.attr("screen")
+                var temp = e.attr("screen");
                 var newtag = $('<div><span>' + e.text() + '</span><label hidden>' + temp + '</label></div>') // new language tab
                     .attr("tagid", e.attr("tagid"))
                     .append(cls)//向标签输入框中添加的新标签。
@@ -227,21 +227,21 @@
 
                 newtag.appendTo("[tag-id=" + id + "]") //将新标签放入 标签输入框中。
 
-            }
+            };
 
             var deltag = function (e) {
-                var tag = e.parent()
+                var tag = e.parent();
                 var val = this_.val();
                 var re = new RegExp("([^\d]?)" + tag.attr("tagid") + "([^\d]?)", "g")
-                val = val.replace(/[^\d,]/).replace(re, "$1$2").replace(/,,/, ",").replace(/^,/, "").replace(/,$/, "")
-                this_.val(val)
+                val = val.replace(/[^\d,]/).replace(re, "$1$2").replace(/,,/, ",").replace(/^,/, "").replace(/,$/, "");
+                this_.val(val);
                 tag.remove()
-            }
+            };
 
-            list("[tag-list-id=" + id + "]")
+            list("[tag-list-id=" + id + "]");
 
             if (this_.val()) { //处理默认值
-                o.defaultData = this_.val().split(",")
+                o.defaultData = this_.val().split(",");
                 this_.val("")
             }
 
@@ -255,7 +255,7 @@
 
         }
 
-    }
+    };
 
     $.fn.sTags.defaults = {
         data: [],//格式:{id:数字,name:文本,screen:筛选文本}
@@ -290,5 +290,5 @@
         tagHtml: "",//自定义标签列表中的html内容。{name} 替换为 tag.name {id}将转换为 tag.id,
         tagAttr: {}//标签属性
     };
-})(jQuery); 
+})(jQuery);
 
