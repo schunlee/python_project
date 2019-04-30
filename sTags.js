@@ -1,8 +1,6 @@
 /*
 	jQuery 标签插件 	ver 0.1
-
 	https://github.com/28269890/sTags
-
 	DEMO:https://28269890.github.io/sTags/
 */
 
@@ -69,7 +67,8 @@
                     attr.tagid = o.data[i].id; //定义标签id
 
                     if (o.screen) { //如果启用筛选 则添加标签属性
-                        attr.screen = o.data[i].screen
+                        attr.screen = o.data[i].screen;
+                        attr.abbr = o.data[i].abbr;
                     }
 
                     if (o.color === 1 && o.data[i].screen) { //按照筛选首字母换色
@@ -101,7 +100,7 @@
 
 
                     var E = $("<" + o.tagName + "/>", attr);
-		    console.error(o.tagHtml);
+                    console.error(o.tagHtml);
                     if (o.tagHtml) {
                         E.html(o.tagHtml.replace('{name}', o.data[i].name).replace('{id}', o.data[i].id))
                     } else {
@@ -212,7 +211,8 @@
                 })//删除标签
 
                 var temp = e.attr("screen");
-                var newtag = $('<div><span>' + e.text() + '</span><label hidden>' + temp + '</label></div>') // new language tab
+                var temp1 = e.attr("abbr");
+                var newtag = $('<div><span>' + e.text() + '</span><label hidden>' + temp + '</label><label hidden>' + temp1 + '</label></div>') // new language tab
                     .attr("tagid", e.attr("tagid"))
                     .append(cls)//向标签输入框中添加的新标签。
 
@@ -236,14 +236,14 @@
                 var re = new RegExp("([^\d]?)" + tag.attr("tagid") + "([^\d]?)", "g")
                 val = val.replace(/[^\d,]/).replace(re, "$1$2").replace(/,,/, ",").replace(/^,/, "").replace(/,$/, "");
                 this_.val(val);
-                tag.remove()
+                tag.remove();
             };
 
             list("[tag-list-id=" + id + "]");
 
             if (this_.val()) { //处理默认值
                 o.defaultData = this_.val().split(",");
-                this_.val("")
+                this_.val("");
             }
 
             if (Array.isArray(o.defaultData)) {//如果默认值是数组
@@ -292,4 +292,5 @@
         tagAttr: {}//标签属性
     };
 })(jQuery);
+
 
