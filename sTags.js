@@ -120,7 +120,7 @@
                         // }
                         if (this_.prop("tagName") === "INPUT") {
                             addtag($(this));
-                            $(this).remove()
+                            //$(this).remove()
                         }
                     });
 
