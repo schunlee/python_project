@@ -252,7 +252,11 @@
             }
 
             for (var i in o.defaultData) {
-                $("[tag-list-id=" + id + "]>[tagid=" + o.defaultData[i] + "]").click()
+		try{
+                    $("[tag-list-id=" + id + "]>[tagid=" + o.defaultData[i] + "]").click()
+		   }catch (e) {
+                       console.error(e)
+                   }
             }
 
         }
