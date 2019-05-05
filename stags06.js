@@ -252,13 +252,9 @@
             }
 
             for (var i in o.defaultData) {
-		console.info("i ==> " + i);
-		try{
-                    $("[tag-list-id=" + id + "]>[tagid=" + o.defaultData[i] + "]").click()
-		   }catch (e) {
-		       
-                       console.warn(e);
-                   }
+		if(i !== "move"){
+		   $("[tag-list-id=" + id + "]>[tagid=" + o.defaultData[i] + "]").click();
+		   }
             }
 
         }
