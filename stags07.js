@@ -252,9 +252,9 @@
             }
 
             for (var i in o.defaultData) {
-		if(i !== "move"){
+		try{
 		   $("[tag-list-id=" + id + "]>[tagid=" + o.defaultData[i] + "]").click();
-		   }
+		   }catch(e){}
             }
 
         }
