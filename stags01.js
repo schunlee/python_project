@@ -255,7 +255,7 @@
 		try{
                     $("[tag-list-id=" + id + "]>[tagid=" + o.defaultData[i] + "]").click()
 		   }catch (e) {
-                       console.error(e)
+                       console.warn(e)
                    }
             }
 
