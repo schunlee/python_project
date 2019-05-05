@@ -251,13 +251,14 @@
                 o.defaultData = o.defaultData.map(Number)
             }
 
-            //for (var i in o.defaultData) {
-		//try{
-                    //$("[tag-list-id=" + id + "]>[tagid=" + o.defaultData[i] + "]").click()
-		   //}catch (e) {
-                       //console.warn(e)
-                   //}
-            //}
+            for (var i in o.defaultData) {
+		try{
+                    $("[tag-list-id=" + id + "]>[tagid=" + o.defaultData[i] + "]").click()
+		   }catch (e) {
+		       console.info(i);
+                       console.warn(e);
+                   }
+            }
 
         }
 
