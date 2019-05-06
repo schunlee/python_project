@@ -213,7 +213,7 @@
                 var temp = e.attr("screen");
                 var temp1 = e.attr("abbr");
 		console.warn("hi=>" + temp1);
-                var newtag = $('<div><span>' + e.text() + '</span><label hidden>' + temp + '</label><label hidden>' + temp1 + '</label></div>') // new language tab
+                var newtag = $('<div><span>' + e.text() + '</span><label hidden>' + temp + '</label><p hidden>' + temp1 + '</p></div>') // new language tab
                     .attr("tagid", e.attr("tagid"))
                     .append(cls)//向标签输入框中添加的新标签。
 
